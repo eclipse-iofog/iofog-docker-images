@@ -8,4 +8,4 @@ RUN apk add --no-cache python && \
 
 RUN pip install --upgrade pip
 RUN pip install ws4py
-RUN pip install iofog-container-sdk
+RUN pip install iofog-python-sdk
