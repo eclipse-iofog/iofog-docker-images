@@ -1,5 +1,5 @@
 build:
-	sudo docker build -t iofog/python:latest -t iofog/python:1.0 .
+	sudo docker build -t iofog/python:latest -t iofog/python:$(TAG) .
 push:build
 	sudo docker push iofog/python:latest
-	sudo docker push iofog/python:1.0
+	sudo docker push iofog/python:$(TAG)
