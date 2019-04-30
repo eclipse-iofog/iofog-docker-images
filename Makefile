@@ -1,3 +1,6 @@
+# Default architecture
+IMAGE_ARCH=x86
+
 JAVA_IMAGE_VERSION=8u211
 JAVA_IMAGE_NAME=java-ubuntu-$(IMAGE_ARCH)
 JAVA_IMAGE_TAGNAME=$(JAVA_IMAGE_NAME):$(JAVA_IMAGE_VERSION)
@@ -22,32 +25,22 @@ default: build
 
 build:
 	docker build -t $(JAVA_IMAGE_TAGNAME) -f java/Dockerfile.$(IMAGE_ARCH) .
-	docker tag $(JAVA_IMAGE_TAGNAME) $(JAVA_IMAGE_NAME):latest
 
 	docker build -t $(NODE_IMAGE_TAGNAME) -f nodejs/Dockerfile.$(IMAGE_ARCH) .
-	docker tag $(NODE_IMAGE_TAGNAME) $(NODE_IMAGE_NAME):latest
 
 	docker build -t $(PYTHON_IMAGE_TAGNAME) -f python/Dockerfile.$(IMAGE_ARCH) .
-	docker tag $(PYTHON_IMAGE_TAGNAME) $(PYTHON_IMAGE_NAME):latest
 
 	docker build -t $(PYTHON3_IMAGE_TAGNAME) -f python3/Dockerfile.$(IMAGE_ARCH) .
-	docker tag $(PYTHON3_IMAGE_TAGNAME) $(PYTHON3_IMAGE_NAME):latest
 
 	docker build -t $(GO_IMAGE_TAGNAME) -f golang/Dockerfile.$(IMAGE_ARCH) .
-	docker tag $(GO_IMAGE_TAGNAME) $(GO_IMAGE_NAME):latest
 
 push:build
 	docker push $(JAVA_IMAGE_TAGNAME)
-	docker push $(JAVA_IMAGE_NAME)
 
 	docker push $(NODE_IMAGE_TAGNAME)
-	docker push $(NODE_IMAGE_NAME):latest
 
 	docker push $(PYTHON_IMAGE_TAGNAME)
-	docker push $(PYTHON_IMAGE_NAME):latest
 
 	docker push $(PYTHON3_IMAGE_TAGNAME)
-	docker push $(PYTHON3_IMAGE_NAME):latest
 
 	docker push $(GO_IMAGE_TAGNAME)
-	docker push $(GO_IMAGE_NAME):latest
