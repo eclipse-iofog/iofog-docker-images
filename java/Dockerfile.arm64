@@ -7,4 +7,4 @@ RUN cd /opt && \
   tar xzf jdk-8u211-arm-64.tar.gz && \
   cd /opt/jdk1.8.0_211/ && \
   update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100 && \
-  rm -R jdk-8u211-arm-64.tar.gz
+  rm -R /opt/jdk-8u211-arm-64.tar.gz
