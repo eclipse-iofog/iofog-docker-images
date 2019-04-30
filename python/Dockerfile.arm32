@@ -1,0 +1,8 @@
+FROM python:2.7.16-alpine3.9
+
+ADD qemu/qemu-arm-static /usr/bin/qemu-arm-static
+
+RUN pip install --upgrade pip
+RUN pip install ws4py
+RUN pip install iofog-python-sdk
+
