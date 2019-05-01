@@ -1,0 +1,4 @@
+FROM golang:1.11.9-alpine3.9
+
+ADD qemu/qemu-arm-static /usr/bin/qemu-arm-static
+
