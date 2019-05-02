@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
-ADD ../qemu/qemu-arm-static /usr/bin/qemu-arm-static
-ADD http://www.edgeworx.io/downloads/jdk/jdk-8u211-arm-32.tar.gz /opt
+COPY qemu/qemu-arm-static /usr/bin/qemu-arm-static
+COPY http://www.edgeworx.io/downloads/jdk/jdk-8u211-arm-32.tar.gz /opt
 
 RUN cd /opt && \
   tar xzf jdk-8u211-arm-32.tar.gz && \
