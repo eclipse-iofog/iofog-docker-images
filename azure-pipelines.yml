@@ -7,7 +7,7 @@ pr:
   - master
 
 pool:
-  vmImage: 'RPi'
+  name: 'RPi'
 
 steps:
   - task: Docker@2
