@@ -10,7 +10,7 @@ pool:
   name: 'RPi'
 
 variables:
-  repository: 'focal-freedom-236620/connector'
+  repository: 'focal-freedom-236620/'
   type: $(Build.SourceBranchName)
   commit: $(Build.SourceVersion)
 
@@ -19,10 +19,11 @@ steps:
     displayName: 'build and push Java for arm32'
     inputs:
       containerRegistry: 'Edgeworx GCP'
-      repository: $(repository)
+      repository: '$(repository)java'
       command: 'buildAndPush'
       Dockerfile: 'java/Dockerfile.arm32'
       tags: |
         $(commit)
         $(type)
         latest
+        arm32
