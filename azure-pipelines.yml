@@ -1,0 +1,23 @@
+# Test arm32 build on RPi agent
+
+trigger:
+  - master
+
+pr:
+  - master
+
+pool:
+  vmImage: 'RPi'
+
+steps:
+  - task: Docker@2
+    displayName: 'build and push Java for arm32'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: $(repository)
+      command: 'buildAndPush'
+      Dockerfile: 'java/Dockerfile.arm32'
+      tags: |
+        $(commit)
+        $(type)
+        latest
