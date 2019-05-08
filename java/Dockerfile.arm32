@@ -2,7 +2,8 @@ FROM ubuntu:16.04
 
 COPY qemu/qemu-arm-static /usr/bin/qemu-arm-static
 
-RUN cd /opt && \
-  curl -SL http://www.edgeworx.io/downloads/jdk/jdk-8u211-64.tar.gz \
-  | tar -xzC /opt && \
-  update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100
+RUN apt-get update && apt-get install php5-curl && \
+    cd /opt && \
+    curl -SL http://www.edgeworx.io/downloads/jdk/jdk-8u211-64.tar.gz \
+    | tar -xzC /opt && \
+    update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100
