@@ -12,8 +12,8 @@ pool:
 
 variables:
   repository: 'focal-freedom-236620/'
-  type: $(Build.SourceBranchName)
-  commit: $(Build.SourceVersion)
+  primaryTag: $(Build.SourceBranchName)
+  secondaryTag: b-$(Build.BuildId)
 
 steps:
   - task: Docker@2
@@ -25,7 +25,7 @@ steps:
       Dockerfile: 'java/Dockerfile.arm32'
       buildContext: '.'
       tags: |
-        $(commit)
-        $(type)
+        $(primaryTag)
+        $(secondaryTag)
         latest
         arm32

@@ -4,9 +4,9 @@ FROM ubuntu:16.04
 COPY qemu/qemu-arm-static /usr/bin/qemu-arm-static
 
 # Install basic deps
-RUN apt-get update -qq && \
-  apt-get install -qqy sudo && \
-  apt-get install -qqy curl
+RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    sudo \
+    curl 
 
 # Install Java8
 RUN cd /opt && \
