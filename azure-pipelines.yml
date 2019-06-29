@@ -4,11 +4,8 @@ trigger:
   - master
   - develop
 
-pr:
-  - master
-
 pool:
-  name: 'RPi'
+  name: 'Ubuntu-16.04'
 
 variables:
   repository: 'focal-freedom-236620/'
