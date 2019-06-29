@@ -5,7 +5,7 @@ trigger:
   - develop
 
 pool:
-  name: 'Ubuntu-16.04'
+  vmImage: 'Ubuntu-16.04'
 
 variables:
   repository: 'focal-freedom-236620/'
