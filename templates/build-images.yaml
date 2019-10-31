@@ -4,17 +4,17 @@ parameters:
 steps:
   - template: './docker-task.yaml'
     parameters:
-      platform: $(platform)
+      platform: ${{ parameters.platform }}
       target: java
   - template: './docker-task.yaml'
     parameters:
-      platform: $(platform)
+      platform: ${{ parameters.platform }}
       target: nodejs
   - template: './docker-task.yaml'
     parameters:
-      platform: $(platform)
+      platform: ${{ parameters.platform }}
       target: python
   - template: './docker-task.yaml'
     parameters:
-      platform: $(platform)
+      platform: ${{ parameters.platform }}
       target: python3

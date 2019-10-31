@@ -4,13 +4,13 @@ parameters:
 
 steps:
   - task: Docker@2
-    displayName: 'Build and Push Java for $(platform)'
+    displayName: 'Build and Push Java for ${{ parameters.platform }}'
     inputs:
       containerRegistry: 'Edgeworx GCP'
-      repository: '$(repository)/$(target)'
+      repository: '$(repository)/${{ parameters.target }}'
       command: 'buildAndPush'
-      Dockerfile: '$(target)/Dockerfile.$(platform)'
+      Dockerfile: '${{ parameters.target }}/Dockerfile.${{ parameters.platform }}'
       buildContext: '.'
       tags: |
         latest
-        $(platform)
+        ${{ parameters.platform }}
