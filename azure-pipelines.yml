@@ -6,21 +6,21 @@ variables:
   repository: 'focal-freedom-236620'
 
 jobs:
-  # - job: arm32
-  #   pool: RPi32
-  #   steps:
-  #     - template: job.yml
-  #       parameters:
-  #         name: web
-  #         shortName: web
+  - job: arm32
+    pool: RPi
+    steps:
+    steps:
+      - template: './templates/build-images.yaml'
+        parameters:
+          platform: 'arm32'
 
   # - job: arm64
   #   pool: RPi64
   #   steps:
-  #     - template: job.yml
-  #       parameters:
-  #         name: web
-  #         shortName: web
+    steps:
+      - template: './templates/build-images.yaml'
+        parameters:
+          platform: 'arm64'
 
   - job: x86
     pool:
