@@ -9,14 +9,12 @@ jobs:
   - job: arm32
     pool: RPi
     steps:
-    steps:
       - template: './templates/build-images.yaml'
         parameters:
           platform: 'arm32'
 
   # - job: arm64
   #   pool: RPi64
-  #   steps:
   #   steps:
   #     - template: './templates/build-images.yaml'
   #       parameters:
