@@ -1,0 +1,19 @@
+parameters:
+  platform: ''
+  target: ''
+
+variables:
+  repository: 'focal-freedom-236620'
+
+steps:
+  - task: Docker@2
+    displayName: 'Build and Push Java for $(platform)'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '$(repository)/$(target)'
+      command: 'buildAndPush'
+      Dockerfile: '$(target)/Dockerfile.$(platform)'
+      buildContext: '.'
+      tags: |
+        latest
+        $(platform)

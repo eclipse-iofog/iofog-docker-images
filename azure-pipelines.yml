@@ -1,28 +1,28 @@
-# Test arm32 build on RPi agent
-
 trigger:
   - master
   - develop
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+jobs:
+  # - job: arm32
+  #   pool: RPi32
+  #   steps:
+  #     - template: job.yml
+  #       parameters:
+  #         name: web
+  #         shortName: web
 
-variables:
-  repository: 'focal-freedom-236620/'
-  primaryTag: $(Build.SourceBranchName)
-  secondaryTag: b-$(Build.BuildId)
+  # - job: arm64
+  #   pool: RPi64
+  #   steps:
+  #     - template: job.yml
+  #       parameters:
+  #         name: web
+  #         shortName: web
 
-steps:
-  - task: Docker@2
-    displayName: 'Build and Push Java for arm32'
-    inputs:
-      containerRegistry: 'Edgeworx GCP'
-      repository: '$(repository)java'
-      command: 'buildAndPush'
-      Dockerfile: 'java/Dockerfile.arm32'
-      buildContext: '.'
-      tags: |
-        $(primaryTag)
-        $(secondaryTag)
-        latest
-        arm32
+  - job: x86
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    steps:
+      - template: '$(System.DefaultWorkingDirectory)/templates/build-images.yml'
+        parameters:
+          platform: 'x86'
