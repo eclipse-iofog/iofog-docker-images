@@ -2,6 +2,9 @@ trigger:
   - master
   - develop
 
+variables:
+  repository: 'focal-freedom-236620'
+
 jobs:
   # - job: arm32
   #   pool: RPi32
