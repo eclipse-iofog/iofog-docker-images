@@ -23,6 +23,6 @@ jobs:
     pool:
       vmImage: 'Ubuntu-16.04'
     steps:
-      - template: './templates/build-images.yml'
+      - template: './templates/build-images.yaml'
         parameters:
           platform: 'x86'
