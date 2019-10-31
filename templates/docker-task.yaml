@@ -12,5 +12,4 @@ steps:
       Dockerfile: '${{ parameters.target }}/Dockerfile.${{ parameters.platform }}'
       buildContext: '.'
       tags: |
-        latest
         ${{ parameters.platform }}
