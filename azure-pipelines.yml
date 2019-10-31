@@ -23,6 +23,6 @@ jobs:
     pool:
       vmImage: 'Ubuntu-16.04'
     steps:
-      - template: '$(System.DefaultWorkingDirectory)/templates/build-images.yml'
+      - template: './templates/build-images.yml'
         parameters:
           platform: 'x86'

@@ -2,19 +2,19 @@ parameters:
   platform: ''
 
 steps:
-  - template: '$(System.DefaultWorkingDirectory)/templates/docker-task.yml'
+  - template: './docker-task.yml'
     parameters:
       platform: $(platform)
       target: java
-  - template: '$(System.DefaultWorkingDirectory)/templates/docker-task.yml'
+  - template: './docker-task.yml'
     parameters:
       platform: $(platform)
       target: nodejs
-  - template: '$(System.DefaultWorkingDirectory)/templates/docker-task.yml'
+  - template: './docker-task.yml'
     parameters:
       platform: $(platform)
       target: python
-  - template: '$(System.DefaultWorkingDirectory)/templates/docker-task.yml'
+  - template: './docker-task.yml'
     parameters:
       platform: $(platform)
       target: python3
