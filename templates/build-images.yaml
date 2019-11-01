@@ -15,7 +15,7 @@ steps:
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
-      target: 'python-alpine'
+      target: 'python2-alpine'
       version: '2.7.16'
   - template: './docker-task.yaml'
     parameters:
