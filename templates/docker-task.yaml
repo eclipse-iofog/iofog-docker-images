@@ -10,7 +10,7 @@ steps:
       containerRegistry: 'Edgeworx GCP'
       repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
       command: 'buildAndPush'
-      Dockerfile: '${{ parameters.target }}/Dockerfile.${{ parameters.platform }}'
+      Dockerfile: '${{ parameters.target }}-${{ parameters.version }}/Dockerfile.${{ parameters.platform }}'
       buildContext: '.'
       tags: |
         ${{ parameters.version }}
