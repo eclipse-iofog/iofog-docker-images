@@ -2,7 +2,7 @@ parameters:
   platform: ''
   target: ''
   version: ''
-  command: 'buildAndPush'
+  command: ''
 
 steps:
   - task: Docker@2
