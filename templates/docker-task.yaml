@@ -6,7 +6,7 @@ parameters:
 
 steps:
   - task: Docker@2
-    displayName: '${{ parameters.version }} ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
+    displayName: '${{ parameters.command }} ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
     inputs:
       containerRegistry: 'Edgeworx GCP'
       repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
