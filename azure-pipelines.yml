@@ -4,6 +4,7 @@ trigger:
 
 variables:
   repository: 'focal-freedom-236620'
+  command: 'buildAndPush'
 
 jobs:
   - job: arm32
