@@ -1,5 +1,0 @@
-FROM node:8.16.0-alpine
-
-ADD qemu/qemu-arm-static /usr/bin/qemu-arm-static
-
-RUN apk add --no-cache python make g++

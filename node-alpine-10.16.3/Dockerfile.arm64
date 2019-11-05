@@ -1,0 +1,5 @@
+FROM node:10.16.3-alpine
+
+ADD qemu/qemu-aarch64-static /usr/bin/qemu-aarch64-static
+
+RUN apk add --no-cache python make g++ sudo curl

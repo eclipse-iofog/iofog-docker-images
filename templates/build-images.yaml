@@ -1,0 +1,29 @@
+parameters:
+  platform: ''
+
+steps:
+  - template: './docker-task.yaml'
+    parameters:
+      platform: ${{ parameters.platform }}
+      target: 'java-ubuntu'
+      version: '8u211'
+  - template: './docker-task.yaml'
+    parameters:
+      platform: ${{ parameters.platform }}
+      target: 'node-alpine'
+      version: '10.16.3'
+  - template: './docker-task.yaml'
+    parameters:
+      platform: ${{ parameters.platform }}
+      target: 'python2-alpine'
+      version: '2.7.16'
+  - template: './docker-task.yaml'
+    parameters:
+      platform: ${{ parameters.platform }}
+      target: 'python3-alpine'
+      version: '3.7.3'
+  - template: './docker-task.yaml'
+    parameters:
+      platform: ${{ parameters.platform }}
+      target: 'golang-alpine'
+      version: '1.11.9'
