@@ -5,12 +5,20 @@ parameters:
 
 steps:
   - task: Docker@2
-    displayName: 'Build and Push ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
+    displayName: 'Build ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
     inputs:
-      containerRegistry: 'Edgeworx GCP'
       repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
-      command: 'buildAndPush'
+      command: 'build'
       Dockerfile: '${{ parameters.target }}-${{ parameters.version }}/Dockerfile.${{ parameters.platform }}'
       buildContext: '.'
       tags: |
         ${{ parameters.version }}
+  - task: Docker@2
+    displayName: 'Push ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
+      command: 'push'
+      tags: |
+        ${{ parameters.version }}
+    condition: ne(variables['Build.Reason'], 'PullRequest'))
