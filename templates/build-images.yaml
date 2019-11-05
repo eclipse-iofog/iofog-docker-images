@@ -1,29 +1,44 @@
 parameters:
   platform: ''
 
+variables:
+  command: 'buildAndPush'
+
 steps:
+  - bash: |
+      if [ "$BUILD_REASON" = "PullRequest" ] then
+        echo "##vso[task.setvariable variable=command]build"
+      fi
+    env:
+      BUILD_REASON: $(Build.Reason)
+    displayName: Setting docker command
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
       target: 'java-ubuntu'
       version: '8u211'
+      command: $(command)
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
       target: 'node-alpine'
       version: '10.16.3'
+      command: $(command)
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
       target: 'python2-alpine'
       version: '2.7.16'
+      command: $(command)
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
       target: 'python3-alpine'
       version: '3.7.3'
+      command: $(command)
   - template: './docker-task.yaml'
     parameters:
       platform: ${{ parameters.platform }}
       target: 'golang-alpine'
       version: '1.11.9'
+      command: $(command)

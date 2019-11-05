@@ -2,23 +2,16 @@ parameters:
   platform: ''
   target: ''
   version: ''
+  command: 'buildAndPush'
 
 steps:
   - task: Docker@2
-    displayName: 'Build ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
+    displayName: '${{ parameters.version }} ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
     inputs:
+      containerRegistry: 'Edgeworx GCP'
       repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
-      command: 'build'
+      command: ${{ parameters.version }}
       Dockerfile: '${{ parameters.target }}-${{ parameters.version }}/Dockerfile.${{ parameters.platform }}'
       buildContext: '.'
       tags: |
         ${{ parameters.version }}
-  - task: Docker@2
-    displayName: 'Push ${{ parameters.target }} ${{ parameters.version }} for ${{ parameters.platform }}'
-    inputs:
-      containerRegistry: 'Edgeworx GCP'
-      repository: '$(repository)/${{ parameters.target }}-${{ parameters.platform }}'
-      command: 'push'
-      tags: |
-        ${{ parameters.version }}
-    condition: ne(variables['Build.Reason'], 'PullRequest')
