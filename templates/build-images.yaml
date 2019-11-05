@@ -4,6 +4,7 @@ parameters:
 steps:
   - bash: |
       if [ "$BUILD_REASON" = "PullRequest" ]; then
+        echo "Setting command to build"
         echo "##vso[task.setvariable variable=command]build"
       fi
     env:
