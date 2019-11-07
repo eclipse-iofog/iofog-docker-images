@@ -14,12 +14,12 @@ jobs:
         parameters:
           platform: 'arm32'
 
-  - job: arm64
-    pool: ARM64
-    steps:
-      - template: './templates/build-images.yaml'
-        parameters:
-          platform: 'arm64'
+  # - job: arm64
+  #   pool: ARM64
+  #   steps:
+  #     - template: './templates/build-images.yaml'
+  #       parameters:
+  #         platform: 'arm64'
 
   - job: x86
     pool:
