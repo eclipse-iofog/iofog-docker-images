@@ -1,0 +1,25 @@
+parameters:
+- name: 'type'
+  type: string
+  default: $(Build.SourceBranchName)
+- name: 'commit'
+  type: string
+  default: $(Build.SourceVersion)
+- name: 'repository'
+  type: string
+  default: 'focal-freedom-236620/'
+
+steps:
+  - task: Docker@2
+    displayName: 'Build and Push Java for arm32'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '$(repository)java'
+      command: 'buildAndPush'
+      Dockerfile: 'java/Dockerfile.arm32'
+      buildContext: '.'
+      tags: |
+        $(commit)
+        $(type)
+        latest
+        arm32

@@ -5,9 +5,13 @@ JAVA_IMAGE_VERSION=8u211
 JAVA_IMAGE_NAME=iofog/java-ubuntu-$(IMAGE_ARCH)
 JAVA_IMAGE_TAGNAME=$(JAVA_IMAGE_NAME):$(JAVA_IMAGE_VERSION)
 
-NODE_IMAGE_VERSION=8.16.0
+NODE_ERBIUM_IMAGE_VERSION=12
 NODE_IMAGE_NAME=iofog/node-alpine-$(IMAGE_ARCH)
-NODE_IMAGE_TAGNAME=$(NODE_IMAGE_NAME):$(NODE_IMAGE_VERSION)
+NODE_IMAGE_TAGNAME=$(NODE_IMAGE_NAME):$(NODE_ERBIUM_IMAGE_VERSION)
+
+NODE_FERMIUM_IMAGE_VERSION=14
+NODE_IMAGE_NAME=iofog/node-alpine-$(IMAGE_ARCH)
+NODE_IMAGE_TAGNAME=$(NODE_IMAGE_NAME):$(NODE_FERMIUM_IMAGE_VERSION)
 
 PYTHON_IMAGE_VERSION=2.7.16
 PYTHON_IMAGE_NAME=iofog/python-alpine-$(IMAGE_ARCH)
@@ -26,7 +30,9 @@ default: build
 build:
 	docker build -t $(JAVA_IMAGE_TAGNAME) -f java/Dockerfile.$(IMAGE_ARCH) .
 
-	docker build -t $(NODE_IMAGE_TAGNAME) -f nodejs/Dockerfile.$(IMAGE_ARCH) .
+	docker build -t $(NODE_IMAGE_TAGNAME) -f nodejs/node8-legacy/Dockerfile.$(IMAGE_ARCH) .
+	docker build -t $(NODE_ERBIUM_IMAGE_TAGNAME) -f nodejs/node12/Dockerfile.$(IMAGE_ARCH) .
+	docker build -t $(NODE_FERMIUM_IMAGE_TAGNAME) -f nodejs/node14/Dockerfile.$(IMAGE_ARCH) .
 
 	docker build -t $(PYTHON_IMAGE_TAGNAME) -f python/Dockerfile.$(IMAGE_ARCH) .
 
@@ -38,6 +44,8 @@ push:build
 	docker push $(JAVA_IMAGE_TAGNAME)
 
 	docker push $(NODE_IMAGE_TAGNAME)
+	docker push $(NODE_ERBIUM_IMAGE_TAGNAME)
+	docker push $(NODE_FERMIUM_IMAGE_TAGNAME)
 
 	docker push $(PYTHON_IMAGE_TAGNAME)
 
