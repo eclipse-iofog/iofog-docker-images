@@ -4,7 +4,7 @@ parameters:
   
 steps:
 - task: Docker@2
-  displayName: 'Build and Push Nodejs 12'
+  displayName: 'Build Nodejs 12'
   inputs:
     repository: 'iofog/nodejs-$(arch)'
     command: 'build'
@@ -14,7 +14,7 @@ steps:
       12
       erbium
 - task: Docker@2
-  displayName: 'Build and Push Nodejs 12 for'
+  displayName: 'Push Nodejs 12'
   inputs:
     repository: 'iofog/nodejs-$(arch)'
     command: 'push'
@@ -25,7 +25,7 @@ steps:
       erbium
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 - task: Docker@2
-  displayName: 'Build and Push Nodejs 14'
+  displayName: 'Build Nodejs 14'
   inputs:
     repository: 'iofog/nodejs-$(arch)'
     command: 'build'
@@ -36,7 +36,7 @@ steps:
       fermium
       latest
 - task: Docker@2
-  displayName: 'Build and Push Nodejs 14'
+  displayName: 'Push Nodejs 14'
   inputs:
     repository: 'iofog/nodejs-$(arch)'
     command: 'push'
