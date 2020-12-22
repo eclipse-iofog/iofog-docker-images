@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 # Install basic deps
 RUN apt-get update -qq && \
   apt-get install -qqy sudo && \
-  apt-get install -qqy curl
+  apt-get install -qqy wget
 
 # Install Java8
 RUN cd /opt && \

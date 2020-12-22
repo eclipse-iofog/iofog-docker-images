@@ -6,7 +6,7 @@ COPY qemu/qemu-aarch64-static /usr/bin/qemu-aarch64-static
 # Install basic deps
 RUN apt-get update -qq && \
   apt-get install -qqy sudo && \
-  apt-get install -qqy curl
+  apt-get install -qqy wget
 
 # Install Java8
 RUN cd /opt && \
