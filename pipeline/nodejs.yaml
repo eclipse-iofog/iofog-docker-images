@@ -6,9 +6,9 @@ steps:
 - task: Docker@2
   displayName: 'Build Nodejs 12'
   inputs:
-    repository: 'iofog/nodejs-$(arch)'
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'build'
-    Dockerfile: 'nodejs/node12/Dockerfile.$(arch)'
+    Dockerfile: 'nodejs/node12/Dockerfile.${{ parameters.arch }}'
     buildContext: '.'
     tags: |
       12
@@ -16,9 +16,9 @@ steps:
 - task: Docker@2
   displayName: 'Push Nodejs 12'
   inputs:
-    repository: 'iofog/nodejs-$(arch)'
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'push'
-    Dockerfile: 'nodejs/node12/Dockerfile.$(arch)'
+    Dockerfile: 'nodejs/node12/Dockerfile.${{ parameters.arch }}'
     buildContext: '.'
     tags: |
       12
@@ -27,9 +27,9 @@ steps:
 - task: Docker@2
   displayName: 'Build Nodejs 14'
   inputs:
-    repository: 'iofog/nodejs-$(arch)'
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'build'
-    Dockerfile: 'nodejs/node14/Dockerfile.$(arch)'
+    Dockerfile: 'nodejs/node14/Dockerfile.${{ parameters.arch }}'
     buildContext: '.'
     tags: |
       14
@@ -38,9 +38,9 @@ steps:
 - task: Docker@2
   displayName: 'Push Nodejs 14'
   inputs:
-    repository: 'iofog/nodejs-$(arch)'
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'push'
-    Dockerfile: 'nodejs/node14/Dockerfile.$(arch)'
+    Dockerfile: 'nodejs/node14/Dockerfile.${{ parameters.arch }}'
     buildContext: '.'
     tags: |
       14
