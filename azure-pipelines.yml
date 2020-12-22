@@ -30,7 +30,7 @@ jobs:
 #         arch: 'arm64'
 - job: Node_x86
   pool:
-    name: 'Ubuntu-16.04'
+    vmImage: 'Ubuntu-18.04'
   steps:
     - template: pipeline/nodejs.yaml
       parameters:
