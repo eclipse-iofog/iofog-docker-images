@@ -15,7 +15,7 @@ steps:
     inputs:
       containerRegistry: 'Edgeworx GCP'
       repository: '$(repository)java'
-      command: 'buildAndPush'
+      command: 'build'
       Dockerfile: 'java/Dockerfile.arm32'
       buildContext: '.'
       tags: |
@@ -23,3 +23,17 @@ steps:
         $(type)
         latest
         arm32
+  - task: Docker@2
+    displayName: 'Build and Push Java for arm32'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '$(repository)java'
+      command: 'push'
+      Dockerfile: 'java/Dockerfile.arm32'
+      buildContext: '.'
+      tags: |
+        $(commit)
+        $(type)
+        latest
+        arm32
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
