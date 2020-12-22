@@ -7,25 +7,32 @@ trigger:
 pr:
   - master
 
-pool:
-  name: 'RPi'
+jobs:
+- job: Java_ARM32
+  pool:
+    name: 'RPi'
+  steps:
+    - template: pipeline/java.yaml
+- job: Node_ARM32
+  pool:
+    name: 'RPi'
+  steps:
+    - template: pipeline/nodejs.yaml
+      parameters:
+        arch: 'arm32'
+# We don't have a pool of ARM64 Agents to build the images
+# - job: Node_ARM64
+#   pool:
+#     name: 'RPi'
+#   steps:
+#     - template: pipeline/nodejs.yaml
+#       parameters:
+#         arch: 'arm64'
+- job: Node_x86
+  pool:
+    vmImage: 'Ubuntu-18.04'
+  steps:
+    - template: pipeline/nodejs.yaml
+      parameters:
+        arch: 'x86'
 
-variables:
-  repository: 'focal-freedom-236620/'
-  type: $(Build.SourceBranchName)
-  commit: $(Build.SourceVersion)
-
-steps:
-  - task: Docker@2
-    displayName: 'Build and Push Java for arm32'
-    inputs:
-      containerRegistry: 'Edgeworx GCP'
-      repository: '$(repository)java'
-      command: 'buildAndPush'
-      Dockerfile: 'java/Dockerfile.arm32'
-      buildContext: '.'
-      tags: |
-        $(commit)
-        $(type)
-        latest
-        arm32

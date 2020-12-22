@@ -1,0 +1,49 @@
+parameters:
+- name: 'arch'
+  type: string
+  
+steps:
+- task: Docker@2
+  displayName: 'Build Nodejs 12'
+  inputs:
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
+    command: 'build'
+    Dockerfile: 'nodejs/node12/Dockerfile.${{ parameters.arch }}'
+    buildContext: '.'
+    tags: |
+      12
+      erbium
+- task: Docker@2
+  displayName: 'Push Nodejs 12'
+  inputs:
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
+    command: 'push'
+    Dockerfile: 'nodejs/node12/Dockerfile.${{ parameters.arch }}'
+    buildContext: '.'
+    tags: |
+      12
+      erbium
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+- task: Docker@2
+  displayName: 'Build Nodejs 14'
+  inputs:
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
+    command: 'build'
+    Dockerfile: 'nodejs/node14/Dockerfile.${{ parameters.arch }}'
+    buildContext: '.'
+    tags: |
+      14
+      fermium
+      latest
+- task: Docker@2
+  displayName: 'Push Nodejs 14'
+  inputs:
+    repository: 'iofog/nodejs-${{ parameters.arch }}'
+    command: 'push'
+    Dockerfile: 'nodejs/node14/Dockerfile.${{ parameters.arch }}'
+    buildContext: '.'
+    tags: |
+      14
+      fermium
+      latest
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

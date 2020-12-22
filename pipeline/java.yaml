@@ -1,0 +1,39 @@
+parameters:
+- name: 'type'
+  type: string
+  default: $(Build.SourceBranchName)
+- name: 'commit'
+  type: string
+  default: $(Build.SourceVersion)
+- name: 'repository'
+  type: string
+  default: 'focal-freedom-236620/'
+
+steps:
+  - task: Docker@2
+    displayName: 'Build Java for arm32'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '${{ parameters.repository }}java'
+      command: 'build'
+      Dockerfile: 'java/Dockerfile.arm32'
+      buildContext: '.'
+      tags: |
+        ${{ parameters.commit }}
+        ${{ parameters.type }}
+        latest
+        arm32
+  - task: Docker@2
+    displayName: 'Push Java for arm32'
+    inputs:
+      containerRegistry: 'Edgeworx GCP'
+      repository: '${{ parameters.repository }}java'
+      command: 'push'
+      Dockerfile: 'java/Dockerfile.arm32'
+      buildContext: '.'
+      tags: |
+        ${{ parameters.commit }}
+        ${{ parameters.type }}
+        latest
+        arm32
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))

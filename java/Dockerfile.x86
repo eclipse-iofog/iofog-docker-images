@@ -3,12 +3,11 @@ FROM ubuntu:16.04
 # Install basic deps
 RUN apt-get update -qq && \
   apt-get install -qqy sudo && \
-  apt-get install -qqy curl
+  apt-get install -qqy wget
 
 # Install Java8
 RUN cd /opt && \
-  curl -O http://www.edgeworx.io/downloads/jdk/jdk-8u211-64.tar.gz && \
-  tar xzf jdk-8u211-64.tar.gz && \
-  cd /opt/jdk1.8.0_211/ && \
+  wget --no-check-certificate "https://storage.googleapis.com/edgeworx/downloads/jdk/jdk-8u211-64.tar.gz" && \
+  tar -xvf jdk-8u211-64.tar.gz && \
   update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100 && \
-  rm -R /opt/jdk-8u211-64.tar.gz
+  rm jdk-8u211-64.tar.gz
