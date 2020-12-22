@@ -16,6 +16,7 @@ steps:
 - task: Docker@2
   displayName: 'Push Nodejs 12'
   inputs:
+    containerRegistry: Edgeworx DockerHub
     repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'push'
     Dockerfile: 'nodejs/node12/Dockerfile.${{ parameters.arch }}'
@@ -38,6 +39,7 @@ steps:
 - task: Docker@2
   displayName: 'Push Nodejs 14'
   inputs:
+    containerRegistry: Edgeworx DockerHub
     repository: 'iofog/nodejs-${{ parameters.arch }}'
     command: 'push'
     Dockerfile: 'nodejs/node14/Dockerfile.${{ parameters.arch }}'
