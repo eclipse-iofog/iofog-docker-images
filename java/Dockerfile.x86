@@ -8,7 +8,6 @@ RUN apt-get update -qq && \
 # Install Java8
 RUN cd /opt && \
   wget --no-check-certificate "https://storage.googleapis.com/edgeworx/downloads/jdk/jdk-8u211-64.tar.gz" && \
-  | tar -xzC /opt && \
   tar -xvf jdk-8u211-64.tar.gz && \
-  update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100	  update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100 && \
+  update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_211/bin/java 1100 && \
   rm jdk-8u211-64.tar.gz
